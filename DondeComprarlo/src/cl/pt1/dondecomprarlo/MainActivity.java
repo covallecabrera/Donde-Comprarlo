@@ -6,11 +6,13 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
+import android.widget.EditText;
 
 
 public class MainActivity extends Activity {
 
+	EditText txtbuscar;
+	private static final String TAG_BUSCAR = "buscar";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,6 +21,21 @@ public class MainActivity extends Activity {
 	 public void ListadoProductos(View v){
 		 Intent i=new Intent(MainActivity.this, ListaProductos.class);
 			startActivity(i);
+	 }
+	 public void BusquedaProducto(View v){
+		 txtbuscar = (EditText) findViewById(R.id.TextoBuscar);
+         String buscar;
+         buscar = txtbuscar.getText().toString();
+       
+      // Starting new intent
+ 		Intent in = new Intent(getApplicationContext(),
+ 				BusquedaProducto.class);
+ 		// sending pid to next activity
+ 		in.putExtra(TAG_BUSCAR, buscar);
+ 		
+ 		// starting new activity and expecting some response back
+ 		startActivityForResult(in, 100);
+         
 	 }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

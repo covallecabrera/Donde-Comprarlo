@@ -30,6 +30,10 @@
             android:name=".ListaProductos"
             android:label="Productos" >
         </activity>
+         <activity
+         android:name=".BusquedaProducto"
+         android:label="Resultado Búsqueda" >
+        </activity>
     </application>
 
 </manifest>

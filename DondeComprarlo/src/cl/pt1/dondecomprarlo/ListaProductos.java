@@ -10,8 +10,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-
-
 import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -59,7 +57,6 @@ public class ListaProductos extends ListActivity{
 		public void onCreate(Bundle savedInstanceState) {
 			super.onCreate(savedInstanceState);
 			setContentView(R.layout.todos_productos);
-			System.out.println("1");
 			// Hashmap for ListView
 			productosList = new ArrayList<HashMap<String, String>>();
 			
@@ -103,6 +100,7 @@ public class ListaProductos extends ListActivity{
 					
 					// Building Parameters
 					List<NameValuePair> params = new ArrayList<NameValuePair>();
+					
 					// getting JSON string from URL
 					JSONObject json = jParser.makeHttpRequest(url_all_productos, "GET", params);
 					
@@ -183,8 +181,8 @@ public class ListaProductos extends ListActivity{
 							 * Updating parsed JSON data into ListView
 							 * */
 							
-							ImageView image = (ImageView) findViewById(R.id.imagen1);
-							new LoadProfileImage(image).execute(TAG_IMAGEN);
+							//ImageView image = (ImageView) findViewById(R.id.imagen1);
+							//new LoadProfileImage(image).execute(TAG_IMAGEN);
 							ListAdapter adapter = new SimpleAdapter(
 									ListaProductos.this, productosList,
 									R.layout.list_item, new String[] { TAG_ID,
@@ -238,8 +236,6 @@ public class ListaProductos extends ListActivity{
 
 					 }
 
-				
-
 					 protected void onPostExecute(Bitmap result) {
 
 						 downloadedImage.setImageBitmap(result);
@@ -247,13 +243,8 @@ public class ListaProductos extends ListActivity{
 					 }
 
 				 }
+	
+			}		
 
-
-				
-				
-			
-				
-			}
-			
-			
 }
+
