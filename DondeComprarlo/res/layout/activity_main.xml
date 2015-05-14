@@ -8,16 +8,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="cl.pt1.dondecomprarlo.MainActivity" >
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="125dp"
-        android:onClick="ListadoProductos"
-        android:text="Listado Todos Productos" />
-
     <EditText
         android:id="@+id/TextoBuscar"
         android:layout_width="wrap_content"
@@ -42,5 +32,18 @@
         android:layout_marginTop="86dp"
         android:onClick="BusquedaProducto"
         android:text="Buscar" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="32dp"
+        android:layout_marginLeft="66dp"
+        android:onClick="ListadoProductos"
+        android:text="Listado Todos Productos" />
+
+
 
 </RelativeLayout>
