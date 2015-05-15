@@ -41,8 +41,8 @@ public class BusquedaCategoria extends ListActivity{
 	// Creating JSON Parser object
 	JSONParser jParser = new JSONParser();
 
-	private static String url_all_categoria = "http://192.168.0.5/donde_comprarlo/busqueda_categoria.php";
-	private static String url_all_marcas = "http://192.168.0.5/donde_comprarlo/mostrar_marcas_categoria.php";
+	private static String url_all_categoria = "http://192.168.1.153/donde_comprarlo/busqueda_categoria.php";
+	private static String url_all_marcas = "http://192.168.1.153/donde_comprarlo/mostrar_marcas_categoria.php";
 
 	// JSON Node names
 	private static final String TAG_SUCCESS = "success";
@@ -83,10 +83,6 @@ public class BusquedaCategoria extends ListActivity{
 				id_marca = ((TextView) view.findViewById(R.id.id1)).getText()
 						.toString();
 				buscar = categorias_id; 
-//				System.out.println("TAG BUSCAR "+TAG_BUSCAR);
-//				System.out.println("TAG_ID MARCA "+TAG_ID_MARCA);
-//				System.out.println("buscar "+buscar);
-//				System.out.println("id_marca "+id_marca);
 
 				// Starting new intent
 				Intent in = new Intent(getApplicationContext(),

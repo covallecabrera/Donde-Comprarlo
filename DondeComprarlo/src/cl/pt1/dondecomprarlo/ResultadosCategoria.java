@@ -1,6 +1,5 @@
 package cl.pt1.dondecomprarlo;
 
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,20 +14,12 @@ import org.json.JSONObject;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
-import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.TextView;
-import android.widget.ImageView;
+
 
 public class ResultadosCategoria extends ListActivity {
 
@@ -38,14 +29,14 @@ public class ResultadosCategoria extends ListActivity {
 	// Progress Dialog
 	private ProgressDialog pDialog;
 
-	// Creating JSON Parser object
+	// Crear objeto JSON Parser 
 	JSONParser jParser = new JSONParser();
 
 	ArrayList<HashMap<String, String>> productosList;
 
-	private static String url_all_productos = "http://192.168.0.5/donde_comprarlo/mostrar_productos_marca.php";
-
-	// JSON Node names
+	private static String url_all_productos = "http://192.168.1.153/donde_comprarlo/mostrar_productos_marca.php";
+	
+	// JSON Nodos
 	private static final String TAG_SUCCESS = "success";
 	private static final String TAG_productos = "productos";
 	private static final String TAG_ID = "id_productos";
@@ -61,28 +52,21 @@ public class ResultadosCategoria extends ListActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.todos_productos);
-		// getting Empleado details from intent
+		// Tomando detalles del Intent
 		Intent i = getIntent();
 
 
-		// getting Empleado id (pid) from intent
+		// Recibiendo los datos del Intent
 		buscar = i.getStringExtra(TAG_BUSCAR);
 		buscar1 = i.getStringExtra(TAG_ID_MARCA);
-		
 
-		// Hashmap for ListView
+
+		// Hashmap para el ListView
 		productosList = new ArrayList<HashMap<String, String>>();
-		System.out.println("buscar "+buscar);
-		System.out.println("buscar1 "+buscar1);
-		// Loading empleados in Background Thread
+
+		// Llamando Clase LoadProductos
 		new LoadProductos().execute();
-
-		// Get listview
-		//ListView lv = getListView();
-
-		// on seleting single Empleado
-		// launching Edit Empleado Screen
-		//lv.setOnItemClickListener(new OnItemClickListener() {
+		
 	}
 
 	class LoadProductos extends AsyncTask<String, String, String> {
@@ -101,8 +85,6 @@ public class ResultadosCategoria extends ListActivity {
 
 		}
 
-
-
 		/**
 		 * getting All productos from url
 		 * */
@@ -113,7 +95,7 @@ public class ResultadosCategoria extends ListActivity {
 			params.add(new BasicNameValuePair("buscar", buscar));
 			params.add(new BasicNameValuePair("buscar1",buscar1));
 			// getting JSON string from URL
-			
+
 			JSONObject json = jParser.makeHttpRequest(url_all_productos, "GET", params);
 
 			// Check your log cat for JSON reponse
@@ -125,14 +107,15 @@ public class ResultadosCategoria extends ListActivity {
 				int success = json.getInt(TAG_SUCCESS);
 
 				if (success == 1) {
-					// productos found
-					// Getting Array of empleados
+					// Se encontraron productos
+					// Tomar el Array de productos
 					productos = json.getJSONArray(TAG_productos);
-					// looping through All empleados
+					// looping through All productos
 					for (int i = 0; i < productos.length(); i++) {
 						JSONObject c = productos.getJSONObject(i);
 
-						// Storing each json item in variable
+						// Guardando cada item del Json en una variable
+					
 						String id = c.getString(TAG_ID);
 						String nombre = c.getString(TAG_NOMBRE);
 						String descripcion = c.getString(TAG_DESCRIPCION);
@@ -140,10 +123,10 @@ public class ResultadosCategoria extends ListActivity {
 						String imagen = c.getString(TAG_IMAGEN);
 
 
-						// creating new HashMap
+						// Creando un nuevo HashMap
 						HashMap<String, String> map = new HashMap<String, String>();
 
-						// adding each child node to HashMap key => value
+						// Agregando cada nodo con su variable al HashMap
 						map.put(TAG_ID, id);
 						map.put(TAG_NOMBRE, nombre);
 						map.put(TAG_DESCRIPCION, descripcion);
@@ -151,7 +134,7 @@ public class ResultadosCategoria extends ListActivity {
 						map.put(TAG_IMAGEN,imagen);
 
 
-						// adding HashList to ArrayList
+						// Agregando el HashMap al Arreglo
 						productosList.add(map);
 					}
 				} else {

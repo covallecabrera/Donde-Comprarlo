@@ -41,7 +41,15 @@
         <activity
          android:name=".ResultadosCategoria"
          android:label="Resultado Búsqueda" >
+        </activity>  
+        <activity
+         android:name=".BusquedaCriterio"
+         android:label="Búsqueda Criterios" >
         </activity>   
+        <activity
+         android:name=".ResultadosCriterio"
+         android:label="Resultado Búsqueda Criterio" >
+        </activity>  
 
     </application>
 

@@ -42,7 +42,7 @@ public class BusquedaProducto extends ListActivity{
 
 	ArrayList<HashMap<String, String>> productosList;
 
-	private static String url_all_productos = "http://192.168.0.5/donde_comprarlo/busqueda.php";
+	private static String url_all_productos = "http://192.168.1.153/donde_comprarlo/busqueda.php";
 
 	// JSON Node names
 	private static final String TAG_SUCCESS = "success";
