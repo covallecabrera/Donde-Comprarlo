@@ -34,10 +34,11 @@
          android:name=".BusquedaProducto"
          android:label="Resultado Búsqueda" >
         </activity>
-      <!--   <activity
-         android:name=".BusquedaProducto"
-         android:label="Resultado Búsqueda" >
-        </activity>   -->
+         <activity
+         android:name=".BusquedaCategoria"
+         android:label="Búsqueda Categoria" >
+        </activity>   
+
     </application>
 
 </manifest>

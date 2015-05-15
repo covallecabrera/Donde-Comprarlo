@@ -22,6 +22,10 @@ public class MainActivity extends Activity {
 		 Intent i=new Intent(MainActivity.this, ListaProductos.class);
 			startActivity(i);
 	 }
+	 public void BusquedaCategoria(View v){
+		 Intent i=new Intent(MainActivity.this, BusquedaCategoria.class);
+			startActivity(i);
+	 }
 	 public void BusquedaProducto(View v){
 		 txtbuscar = (EditText) findViewById(R.id.TextoBuscar);
          String buscar;

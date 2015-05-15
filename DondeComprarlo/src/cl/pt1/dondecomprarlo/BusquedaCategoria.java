@@ -10,6 +10,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.Activity;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -21,14 +22,18 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.ImageView;
+import android.widget.Toast;
 
-public class BusquedaCategoria extends ListActivity{
+public class BusquedaCategoria extends Activity{
 
 	// Progress Dialog
 	private ProgressDialog pDialog;
@@ -36,43 +41,37 @@ public class BusquedaCategoria extends ListActivity{
 	// Creating JSON Parser object
 	JSONParser jParser = new JSONParser();
 
-	ArrayList<HashMap<String, String>> categoriaList;
-
 	private static String url_all_categoria = "http://192.168.0.5/donde_comprarlo/busqueda_categoria.php";
 
 	// JSON Node names
 	private static final String TAG_SUCCESS = "success";
 	private static final String TAG_categoria = "categoria";
-	private static final String TAG_ID = "id_productos";
-	private static final String TAG_NOMBRE = "nombre_producto";
+	private static final String TAG_ID = "id_categoria";
+	private static final String TAG_NOMBRE = "nombre_categoria";
 
 
-	// productos JSONArray
-	JSONArray productos = null;
+	// categorias JSONArray
+	JSONArray categoria = null;
 
-
+	String categorias, categorias_id;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.spinner);
-		// Hashmap for ListView
-		categoriaList = new ArrayList<HashMap<String, String>>();
+		setContentView(R.layout.busqueda_categoria);
 
-		// Loading empleados in Background Thread
+		// Loading categorias in Background Thread
 		new LoadAllCategorias().execute();
 
-		// Get listview
-		ListView lv = getListView();
-
-		// on seleting single Empleado
-		// launching Edit Empleado Screen
-		//lv.setOnItemClickListener(new OnItemClickListener() {
 	}
 
 	/**
 	 * Background Async Task to Load all Productos by making HTTP Request
 	 * */
 	class LoadAllCategorias extends AsyncTask<String, String, String> {
+
+
+		List<String> categoriaList = new ArrayList<String>();
+		List<String> idcategoriaList = new ArrayList<String>();
 
 		/**
 		 * Before starting background thread Show Progress Dialog
@@ -113,40 +112,28 @@ public class BusquedaCategoria extends ListActivity{
 				if (success == 1) {
 					// productos found
 					// Getting Array of empleados
-					productos = json.getJSONArray(TAG_categoria);
+					categoria = json.getJSONArray(TAG_categoria);
 					System.out.println("Se encontraron categorias");
 					// looping through All empleados
-					for (int i = 0; i < productos.length(); i++) {
-						JSONObject c = productos.getJSONObject(i);
+					categoriaList.add("Categorías");
+					idcategoriaList.add("0");
+					for (int i = 0; i < categoria.length(); i++) {
+						JSONObject c = categoria.getJSONObject(i);
 
 						// Storing each json item in variable
 						String id = c.getString(TAG_ID);
 						String nombre = c.getString(TAG_NOMBRE);
 
+						// Agregando datos a las listas
+						categoriaList.add(nombre);
+						idcategoriaList.add(id);
 
 
-						// creating new HashMap
-						HashMap<String, String> map = new HashMap<String, String>();
-
-						// adding each child node to HashMap key => value
-						map.put(TAG_ID, id);
-						map.put(TAG_NOMBRE, nombre);
-
-
-
-						// adding HashList to ArrayList
-						categoriaList.add(map);
 					}
 				} else {
-					// no empleados found
-					// Launch Add New Empleado Activity
-					/*Intent i = new Intent(getApplicationContext(),
-									NewEmpladoActivity.class);
-							// Closing all previous activities
-							i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-							startActivity(i);*/
+					// no categorias found
 
-					System.out.println("No se han encontrado productos");
+					System.out.println("No se han encontrado categorias");
 				}
 
 
@@ -165,28 +152,37 @@ public class BusquedaCategoria extends ListActivity{
 		 * **/
 
 
-		protected void onPostExecute(String file_url) {
-			// dismiss the dialog after getting all productos
+		protected void onPostExecute(String file_url){
+			//dismiss the dialog after getting all categorias
 			pDialog.dismiss();
-			// updating UI from Background Thread
-			runOnUiThread(new Runnable() {
-				public void run() {
-					/**
-					 * Updating parsed JSON data into ListView
-					 * */
+			Spinner spinnerCategorias;
 
-					//ImageView image = (ImageView) findViewById(R.id.imagen1);
-					//new LoadProfileImage(image).execute(TAG_IMAGEN);
-					ListAdapter adapter = new SimpleAdapter(
-							BusquedaCategoria.this, categoriaList,
-							R.layout.list_item, new String[] { TAG_ID,
-									TAG_NOMBRE },
-									new int[] { R.id.id1, R.id.nombre,R.id.descripcion,R.id.precio,R.id.imagen1 });
-					// updating listview
-					setListAdapter(adapter);
+			spinnerCategorias = (Spinner) findViewById(R.id.spinner_categorias);
+
+			spinnerCategorias = (Spinner) BusquedaCategoria.this.findViewById(R.id.spinner_categorias);
+			ArrayAdapter<String> adaptador = new ArrayAdapter(BusquedaCategoria.this, android.R.layout.simple_spinner_item, categoriaList);
+			adaptador.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+			spinnerCategorias.setAdapter(adaptador);///////////////
+			spinnerCategorias.setOnItemSelectedListener(new OnItemSelectedListener() {
+				@Override
+				public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+					Toast.makeText(arg0.getContext(), "Seleccionado: " + arg0.getItemAtPosition(arg2).toString(), Toast.LENGTH_SHORT).show();
+					categorias = arg0.getItemAtPosition(arg2).toString();
+					//Toast.makeText(arg0.getContext(), "Seleccionado id: " + categorias_id.get(arg2), Toast.LENGTH_SHORT).show();
+					categorias_id = idcategoriaList.get(arg2).toString();
 				}
+
+				@Override
+				public void onNothingSelected(AdapterView<?> parent) {
+					// TODO Auto-generated method stub
+
+				}
+
+
 			});
 
 		}
+
+
 	}
 }
