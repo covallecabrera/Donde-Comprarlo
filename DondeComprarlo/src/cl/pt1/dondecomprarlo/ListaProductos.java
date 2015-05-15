@@ -35,9 +35,10 @@ public class ListaProductos extends ListActivity{
 
 		// Creating JSON Parser object
 		JSONParser jParser = new JSONParser();
-	
+		
 		ArrayList<HashMap<String, String>> productosList;
 
+			
 		private static String url_all_productos = "http://192.168.0.5/donde_comprarlo/productos.php";
 		
 		// JSON Node names

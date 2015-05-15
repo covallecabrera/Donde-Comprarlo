@@ -38,6 +38,10 @@
          android:name=".BusquedaCategoria"
          android:label="Búsqueda Categoria" >
         </activity>   
+        <activity
+         android:name=".ResultadosCategoria"
+         android:label="Resultado Búsqueda" >
+        </activity>   
 
     </application>
 
