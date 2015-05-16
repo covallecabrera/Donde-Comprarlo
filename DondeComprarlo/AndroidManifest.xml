@@ -50,6 +50,10 @@
          android:name=".ResultadosCriterio"
          android:label="Resultado Búsqueda Criterio" >
         </activity>  
+        <activity
+         android:name=".InformacionProductos"
+         android:label="Información Producto" >
+        </activity>  
 
     </application>
 

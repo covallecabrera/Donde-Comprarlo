@@ -17,13 +17,18 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
+import android.widget.AdapterView.OnItemClickListener;
 
 
 public class ResultadosCriterio extends ListActivity {
 
-	String categoria,marca,nombre,precio;
+	String categoria,marca,nombre,precio,producto;
 	private static final String TAG_BUSCAR = "buscar";
 	private static final String TAG_ID_MARCA = "id_marca";
 	private static final String TAG_NOM_PRODUCTO = "nom_producto";
@@ -65,12 +70,41 @@ public class ResultadosCriterio extends ListActivity {
 		nombre = i.getStringExtra(TAG_NOM_PRODUCTO);
 		precio = i.getStringExtra(TAG_PRE_PRODUCTO);
 		
+		if (precio.equals("")){
+			precio = "1000000";
+		}
 		
 		// Hashmap para el ListView
 		productosList = new ArrayList<HashMap<String, String>>();
 
 		// Llamando Clase LoadProductos
 		new LoadProductos().execute();
+		
+		// Get listview
+		ListView lv = getListView();
+
+		// on seleting single Empleado
+		// launching Edit Empleado Screen
+		lv.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				// getting values from selected ListItem
+				producto = ((TextView) view.findViewById(R.id.id1)).getText()
+						.toString();
+	
+
+				// Starting new intent
+				Intent in = new Intent(getApplicationContext(),
+						InformacionProductos.class);
+				// sending pid to next activity
+				in.putExtra(TAG_BUSCAR, producto);
+				
+				// starting new activity and expecting some response back
+				startActivityForResult(in, 100);
+			}
+		});
 		
 	}
 
