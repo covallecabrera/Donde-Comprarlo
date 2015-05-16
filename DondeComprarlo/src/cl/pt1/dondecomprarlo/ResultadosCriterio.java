@@ -41,7 +41,7 @@ public class ResultadosCriterio extends ListActivity {
 
 	ArrayList<HashMap<String, String>> productosList;
 
-	private static String url_all_productos = "http://192.168.1.153/donde_comprarlo/busqueda_criterios.php";
+	private static String url_all_productos = "http://192.168.0.5/donde_comprarlo/busqueda_criterios.php";
 
 	// JSON Nodos
 	private static final String TAG_SUCCESS = "success";
@@ -58,7 +58,7 @@ public class ResultadosCriterio extends ListActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.resultado_criterio);
+		setContentView(R.layout.todos_productos);
 		System.out.println("After setContent");
 		// Tomando detalles del Intent
 		Intent i = getIntent();

@@ -26,7 +26,7 @@ public final class R {
     }
     public static final class id {
         public static final int TextoBuscar=0x7f080000;
-        public static final int action_settings=0x7f08001c;
+        public static final int action_settings=0x7f08001b;
         public static final int button1=0x7f080001;
         public static final int button2=0x7f080002;
         public static final int button3=0x7f080003;
@@ -39,7 +39,6 @@ public final class R {
         public static final int imageView3=0x7f08000e;
         public static final int imageView4=0x7f08000f;
         public static final int imagen1=0x7f08001a;
-        public static final int list=0x7f08001b;
         public static final int marca=0x7f080016;
         public static final int nombre=0x7f080010;
         public static final int nombre_producto=0x7f080008;
@@ -62,9 +61,7 @@ public final class R {
         public static final int informacion_producto=0x7f030003;
         public static final int list_item=0x7f030004;
         public static final int list_item_busqueda=0x7f030005;
-        public static final int resultado_categoria=0x7f030006;
-        public static final int resultado_criterio=0x7f030007;
-        public static final int todos_productos=0x7f030008;
+        public static final int todos_productos=0x7f030006;
     }
     public static final class menu {
         public static final int main=0x7f070000;

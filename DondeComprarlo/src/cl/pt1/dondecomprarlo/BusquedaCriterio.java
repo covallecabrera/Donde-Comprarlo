@@ -46,8 +46,8 @@ public class BusquedaCriterio extends Activity{
 	// Creating JSON Parser object
 	JSONParser jParser = new JSONParser();
 
-	private static String url_all_categoria = "http://192.168.1.153/donde_comprarlo/busqueda_categoria.php";
-	private static String url_all_marcas = "http://192.168.1.153/donde_comprarlo/mostrar_marcas_categoria.php";
+	private static String url_all_categoria = "http://192.168.0.5/donde_comprarlo/busqueda_categoria.php";
+	private static String url_all_marcas = "http://192.168.0.5/donde_comprarlo/mostrar_marcas_categoria.php";
 
 	// JSON Node names
 	private static final String TAG_SUCCESS = "success";

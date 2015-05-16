@@ -32,7 +32,7 @@ import android.widget.ImageView;
 public class BusquedaProducto extends ListActivity{
 
 
-	String buscar;
+	String buscar,producto;
 	private static final String TAG_BUSCAR = "buscar";
 	// Progress Dialog
 	private ProgressDialog pDialog;
@@ -42,7 +42,7 @@ public class BusquedaProducto extends ListActivity{
 
 	ArrayList<HashMap<String, String>> productosList;
 
-	private static String url_all_productos = "http://192.168.1.153/donde_comprarlo/busqueda.php";
+	private static String url_all_productos = "http://192.168.0.5/donde_comprarlo/busqueda.php";
 
 	// JSON Node names
 	private static final String TAG_SUCCESS = "success";
@@ -74,11 +74,30 @@ public class BusquedaProducto extends ListActivity{
 		new LoadProductos().execute();
 
 		// Get listview
-		//ListView lv = getListView();
+		ListView lv = getListView();
 
 		// on seleting single Empleado
 		// launching Edit Empleado Screen
-		//lv.setOnItemClickListener(new OnItemClickListener() {
+		lv.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				// getting values from selected ListItem
+				producto = ((TextView) view.findViewById(R.id.id1)).getText()
+						.toString();
+	
+
+				// Starting new intent
+				Intent in = new Intent(getApplicationContext(),
+						InformacionProductos.class);
+				// sending pid to next activity
+				in.putExtra(TAG_BUSCAR, producto);
+				
+				// starting new activity and expecting some response back
+				startActivityForResult(in, 100);
+			}
+		});
 	}
 
 	/**

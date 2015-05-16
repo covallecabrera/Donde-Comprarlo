@@ -30,16 +30,18 @@ import android.widget.ImageView;
 
 public class ListaProductos extends ListActivity{
 	
+	
+	String producto;
 	// Progress Dialog
 		private ProgressDialog pDialog;
-
+		
 		// Creating JSON Parser object
 		JSONParser jParser = new JSONParser();
 		
 		ArrayList<HashMap<String, String>> productosList;
 
 			
-		private static String url_all_productos = "http://192.168.1.153/donde_comprarlo/productos.php";
+		private static String url_all_productos = "http://192.168.0.5/donde_comprarlo/productos.php";
 		
 		// JSON Node names
 		private static final String TAG_SUCCESS = "success";
@@ -49,7 +51,7 @@ public class ListaProductos extends ListActivity{
 		private static final String TAG_DESCRIPCION = "descripcion_producto";
 		private static final String TAG_PRECIO = "precio_producto";
 		private static final String TAG_IMAGEN = "imagen_producto1";
-		
+		private static final String TAG_BUSCAR = "buscar";
 		// productos JSONArray
 		JSONArray productos = null;
 		
@@ -63,13 +65,32 @@ public class ListaProductos extends ListActivity{
 			
 			// Loading empleados in Background Thread
 			new LoadAllProductos().execute();
-			
+
 			// Get listview
 			ListView lv = getListView();
 
 			// on seleting single Empleado
 			// launching Edit Empleado Screen
-			//lv.setOnItemClickListener(new OnItemClickListener() {
+			lv.setOnItemClickListener(new OnItemClickListener() {
+
+				@Override
+				public void onItemClick(AdapterView<?> parent, View view,
+						int position, long id) {
+					// getting values from selected ListItem
+					producto = ((TextView) view.findViewById(R.id.id1)).getText()
+							.toString();
+		
+
+					// Starting new intent
+					Intent in = new Intent(getApplicationContext(),
+							InformacionProductos.class);
+					// sending pid to next activity
+					in.putExtra(TAG_BUSCAR, producto);
+					
+					// starting new activity and expecting some response back
+					startActivityForResult(in, 100);
+				}
+			});
 		}
 			
 			/**
