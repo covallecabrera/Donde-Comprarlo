@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical" >
+    android:orientation="horizontal" >
 
     <!-- Product id (pid) - will be HIDDEN - used to pass to other activity -->
     <TextView
@@ -19,10 +19,16 @@
         android:layout_width="?android:attr/listPreferredItemHeight"
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
-        android:contentDescription="@string/app_name" />
+        android:contentDescription="@string/app_name" 
+        android:layout_weight="1"/>
 
 
-    <TextView
+    <LinearLayout 
+        android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:orientation="vertical"
+    	android:layout_weight="5">
+    	    <TextView
         android:id="@+id/nombre"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -30,10 +36,9 @@
         android:paddingTop="6dip"
         android:textColor="#000000"
         android:textSize="17dip"
-        android:textStyle="bold" />
-    
-
-       
+        android:textStyle="bold"
+        android:layout_weight="1" />
+   
            <TextView
         android:id="@+id/precio"
         android:layout_width="fill_parent"
@@ -42,7 +47,11 @@
         android:paddingTop="6dip"
         android:textColor="#000000"
         android:textSize="17dip"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_weight="1" />
+        
+    </LinearLayout>
+
         
 
            

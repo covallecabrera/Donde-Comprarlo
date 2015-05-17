@@ -50,10 +50,13 @@ public class ProductosAdapter extends BaseAdapter {
 	    image.setImageBitmap(productos.getFoto());
 	          
 	    TextView nombre = (TextView) vi.findViewById(R.id.nombre);
-	    nombre.setText(productos.getNombre());
+	    nombre.setText("Modelo: "+productos.getNombre());
 	    
 	    TextView precio = (TextView) vi.findViewById(R.id.precio);
-	    precio.setText(productos.getPrecio());
+	    precio.setText("Precio: $"+productos.getPrecio());
+	    
+	    TextView id = (TextView) vi.findViewById(R.id.id1);
+	    id.setText(Integer.toString(productos.getId()));
 	 
 	    return vi;
 	  }

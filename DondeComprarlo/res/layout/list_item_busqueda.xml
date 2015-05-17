@@ -13,6 +13,12 @@
 
 
     <!-- Name Label -->
+    <ImageView
+        android:id="@+id/imagen1"
+        android:layout_width="?android:attr/listPreferredItemHeight"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:contentDescription="@string/app_name" />
 
     <TextView
         android:id="@+id/nombre"
@@ -35,12 +41,7 @@
         android:textSize="17dip"
         android:textStyle="bold" />
         
-    <ImageView
-        android:id="@+id/imagen1"
-        android:layout_width="?android:attr/listPreferredItemHeight"
-        android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
-        android:contentDescription="@string/app_name" />
+
            
 
 </LinearLayout>

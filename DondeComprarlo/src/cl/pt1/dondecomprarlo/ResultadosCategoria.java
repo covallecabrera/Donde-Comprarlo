@@ -11,6 +11,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 
+import android.app.Activity;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -26,9 +27,9 @@ import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 
 
-public class ResultadosCategoria extends ListActivity {
+public class ResultadosCategoria extends Activity {
 
-	String buscar,buscar1,producto;
+	String buscar,buscar1,producto,product,img1;
 	private static final String TAG_BUSCAR = "buscar";
 	private static final String TAG_ID_MARCA = "id_marca";
 	// Progress Dialog
@@ -36,11 +37,12 @@ public class ResultadosCategoria extends ListActivity {
 
 	// Crear objeto JSON Parser 
 	JSONParser jParser = new JSONParser();
+	ArrayList<Productos> productosDisponibles;
+	ListView lvProductos;
 
-	ArrayList<HashMap<String, String>> productosList;
 
 	private static String url_all_productos = "http://192.168.0.5/donde_comprarlo/mostrar_productos_marca.php";
-	
+
 	// JSON Nodos
 	private static final String TAG_SUCCESS = "success";
 	private static final String TAG_productos = "productos";
@@ -51,7 +53,7 @@ public class ResultadosCategoria extends ListActivity {
 	private static final String TAG_IMAGEN = "imagen_producto1";
 
 	// productos JSONArray
-	JSONArray productos = null;
+	JSONArray productosjson = null;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -67,37 +69,32 @@ public class ResultadosCategoria extends ListActivity {
 
 
 		// Hashmap para el ListView
-		productosList = new ArrayList<HashMap<String, String>>();
+		lvProductos = (ListView) findViewById(R.id.list);
+		productosDisponibles = new ArrayList<Productos>();
 
 		// Llamando Clase LoadProductos
 		new LoadProductos().execute();
-		
-		// Get listview
-		ListView lv = getListView();
 
-		// on seleting single Empleado
-		// launching Edit Empleado Screen
-		lv.setOnItemClickListener(new OnItemClickListener() {
-
+		lvProductos.setOnItemClickListener(new OnItemClickListener() {
 			@Override
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
-				// getting values from selected ListItem
-				producto = ((TextView) view.findViewById(R.id.id1)).getText()
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+				product = ((TextView) view.findViewById(R.id.id1)).getText()
 						.toString();
-	
+
 
 				// Starting new intent
 				Intent in = new Intent(getApplicationContext(),
 						InformacionProductos.class);
 				// sending pid to next activity
-				in.putExtra(TAG_BUSCAR, producto);
-				
+				in.putExtra(TAG_BUSCAR, product);
+
 				// starting new activity and expecting some response back
 				startActivityForResult(in, 100);
+
 			}
 		});
-		
+
 	}
 
 	class LoadProductos extends AsyncTask<String, String, String> {
@@ -137,51 +134,40 @@ public class ResultadosCategoria extends ListActivity {
 				// Checking for SUCCESS TAG
 				int success = json.getInt(TAG_SUCCESS);
 
-				if (success == 1) {
-					// Se encontraron productos
-					// Tomar el Array de productos
-					productos = json.getJSONArray(TAG_productos);
-					// looping through All productos
-					for (int i = 0; i < productos.length(); i++) {
-						JSONObject c = productos.getJSONObject(i);
+			
+					if (success == 1) {
+						// productos found
+						// Getting Array of empleados
+						productosjson = json.getJSONArray(TAG_productos);
+						// looping through All empleados
+						for (int i = 0; i < productosjson.length(); i++) {
+							JSONObject producto = productosjson.getJSONObject(i);
 
-						// Guardando cada item del Json en una variable
-					
-						String id = c.getString(TAG_ID);
-						String nombre = c.getString(TAG_NOMBRE);
-						String descripcion = c.getString(TAG_DESCRIPCION);
-						String precio = c.getString(TAG_PRECIO);
-						String imagen = c.getString(TAG_IMAGEN);
+							Productos c = new Productos(producto.getInt(TAG_ID), producto.getString(TAG_NOMBRE),
+									producto.getString(TAG_PRECIO));
+							img1=producto.getString(TAG_IMAGEN);
+							// Creamos el objeto City
 
-
-						// Creando un nuevo HashMap
-						HashMap<String, String> map = new HashMap<String, String>();
-
-						// Agregando cada nodo con su variable al HashMap
-						map.put(TAG_ID, id);
-						map.put(TAG_NOMBRE, nombre);
-						map.put(TAG_DESCRIPCION, descripcion);
-						map.put(TAG_PRECIO, precio);
-						map.put(TAG_IMAGEN,imagen);
+							c.setData(producto.getString(TAG_IMAGEN));
 
 
-						// Agregando el HashMap al Arreglo
-						productosList.add(map);
-					}
-				} else {
-					// no empleados found
-					// Launch Add New Empleado Activity
-					/*Intent i = new Intent(getApplicationContext(),
+							// Almacenamos el objeto en el array que hemos creado anteriormente
+							productosDisponibles.add(c);
+						}
+					} else {
+						// no empleados found
+						// Launch Add New Empleado Activity
+						/*Intent i = new Intent(getApplicationContext(),
 									NewEmpladoActivity.class);
 							// Closing all previous activities
 							i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 							startActivity(i);*/
 
-					System.out.println("No se han encontrado productos");
-				}
+						System.out.println("No se han encontrado productos");
+					}
 
 
-
+				
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
@@ -199,24 +185,10 @@ public class ResultadosCategoria extends ListActivity {
 		protected void onPostExecute(String file_url) {
 			// dismiss the dialog after getting all productos
 			pDialog.dismiss();
-			// updating UI from Background Thread
-			runOnUiThread(new Runnable() {
-				public void run() {
-					/**
-					 * Updating parsed JSON data into ListView
-					 * */
+			// Creamos el objeto CityAdapter y lo asignamos al ListView 
+			ProductosAdapter cityAdapter = new ProductosAdapter(ResultadosCategoria.this, productosDisponibles);
+			lvProductos.setAdapter(cityAdapter);	
 
-					//ImageView image = (ImageView) findViewById(R.id.imagen1);
-					//new LoadProfileImage(image).execute(TAG_IMAGEN);
-					ListAdapter adapter = new SimpleAdapter(
-							ResultadosCategoria.this, productosList,
-							R.layout.list_item_busqueda, new String[] { TAG_ID,
-									TAG_NOMBRE,TAG_PRECIO,TAG_IMAGEN },
-									new int[] { R.id.id1, R.id.nombre,R.id.precio,R.id.imagen1 });
-					// updating listview
-					setListAdapter(adapter);
-				}
-			});
 
 		}
 

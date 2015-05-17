@@ -1,5 +1,7 @@
 package cl.pt1.dondecomprarlo;
 
+import java.io.InputStream;
+
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
@@ -45,11 +47,11 @@ public class Productos {
 		return data;
 	}
 
-	public void setData(String data) {
-		this.data = data;
+	public void setData(String... urls) {
+		String urldisplay = urls[0]; 
 		try {   
-			byte[] byteData = Base64.decode(data, Base64.DEFAULT);
-			this.foto = BitmapFactory.decodeByteArray( byteData, 0, byteData.length);
+			InputStream in = new java.net.URL(urldisplay).openStream(); 		
+			this.foto = BitmapFactory.decodeStream(in);
 		}
 		catch(Exception e) {
 			e.printStackTrace();
