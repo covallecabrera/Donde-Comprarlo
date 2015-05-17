@@ -4,7 +4,6 @@ import java.io.InputStream;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.util.Base64;
 
 public class Productos {
 	protected int id;

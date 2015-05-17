@@ -1,9 +1,6 @@
 package cl.pt1.dondecomprarlo;
 
-import java.io.IOException;
 import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,29 +12,21 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
-import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Rect;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.BaseAdapter;
-import android.widget.ListAdapter;
-import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.ImageView;
 
 public class InformacionProductos extends Activity{
 
 
-	String buscar,nombre,descripcion,precio,marca,categoria,id,img1,img2,img3;
+	String buscar,nombre,descripcion,precio,marca,categoria,id,img,img1,img2,img3;
 	private static final String TAG_BUSCAR = "buscar";
 	// Progress Dialog
 	private ProgressDialog pDialog;
@@ -61,7 +50,7 @@ public class InformacionProductos extends Activity{
 	private static final String TAG_IMAGEN3 = "imagen_producto3";
 	private static final String TAG_CATEGORIA = "nombre_categoria";
 	private static final String TAG_MARCA = "nombre_marca";
-
+	private static final String TAG_IMG = "img";
 	// productos JSONArray
 	JSONArray productos = null;
 
@@ -82,6 +71,27 @@ public class InformacionProductos extends Activity{
 		// Loading empleados in Background Thread
 		new LoadProductos().execute();
 
+	}
+	public void cargarImagen(View v){
+		// Starting new intent
+				Intent in = new Intent(getApplicationContext(),
+						ImagenCompleta.class);
+				// sending pid to next activity
+				in.putExtra(TAG_IMG, img);
+				in.putExtra(TAG_BUSCAR, buscar);
+				startActivityForResult(in, 100);
+	}
+	public void cargarImagen1(View v){
+		img =img1;
+		new DownloadImageTask((ImageView) findViewById(R.id.imageView1)) .execute(img);
+	}
+	public void cargarImagen2(View v){
+		img=img2;
+		new DownloadImageTask((ImageView) findViewById(R.id.imageView1)) .execute(img);
+	}
+	public void cargarImagen3(View v){
+		img=img3;
+		new DownloadImageTask((ImageView) findViewById(R.id.imageView1)) .execute(img);
 	}
 
 	/**
@@ -144,6 +154,7 @@ public class InformacionProductos extends Activity{
 						img1 = c.getString(TAG_IMAGEN);
 						img2 = c.getString(TAG_IMAGEN2);
 						img3 = c.getString(TAG_IMAGEN3);
+						img=img1;
 					}
 
 				} else {
@@ -185,42 +196,47 @@ public class InformacionProductos extends Activity{
 			TextView categoria1 = (TextView) findViewById(R.id.categoria);
 			TextView marca1 = (TextView) findViewById(R.id.marca);
 			// Mostrando Imagen en ImageView
-			new DownloadImageTask((ImageView) findViewById(R.id.imageView1)) .execute(img1);
+			new DownloadImageTask((ImageView) findViewById(R.id.imageView1)) .execute(img);
 			new DownloadImageTask((ImageView) findViewById(R.id.imageView2)) .execute(img1);
 			new DownloadImageTask((ImageView) findViewById(R.id.imageView3)) .execute(img2);
 			new DownloadImageTask((ImageView) findViewById(R.id.imageView4)) .execute(img3);
 			// Seteando valores en los TextView
-			nombre1.setText(nombre);
-			descripcion1.setText(descripcion);
-			precio1.setText(precio);
-			categoria1.setText(categoria);
-			marca1.setText(marca);
+			nombre1.setText("Modelo: "+nombre);
+			descripcion1.setText("Descripción: "+descripcion);
+			precio1.setText("Precio: $"+precio);
+			categoria1.setText("Categoría: "+categoria);
+			marca1.setText("Marca: "+marca);
 		}
 
 
-		private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> { 
-			ImageView bmImage;
-			public DownloadImageTask(ImageView bmImage) { 
-				this.bmImage = bmImage; 
-			} 
-			protected Bitmap doInBackground(String... urls) { 
-				String urldisplay = urls[0]; Bitmap mIcon11 = null; 
-				try { 
-					InputStream in = new java.net.URL(urldisplay).openStream(); 
-					mIcon11 = BitmapFactory.decodeStream(in);
-				} catch (Exception e) {
-					Log.e("Error", e.getMessage());
-					e.printStackTrace();
-				}
-				return mIcon11; 
-			} 
-			protected void onPostExecute(Bitmap result) { 
-				bmImage.setImageBitmap(result); 
+
+
+	}	
+	private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> { 
+		ImageView bmImage;
+		public DownloadImageTask(ImageView bmImage) { 
+			this.bmImage = bmImage; 
+		} 
+		protected Bitmap doInBackground(String... urls) { 
+			String urldisplay = urls[0]; Bitmap mIcon11 = null; 
+			try { 
+				InputStream in = new java.net.URL(urldisplay).openStream(); 
+				mIcon11 = BitmapFactory.decodeStream(in);
+			} catch (Exception e) {
+				Log.e("Error", e.getMessage());
+				e.printStackTrace();
 			}
-
+			return mIcon11; 
+		} 
+		protected void onPostExecute(Bitmap result) { 
+			bmImage.setImageBitmap(result); 
 		}
 
-	}		
+	}
 
 }
+
+
+
+
 

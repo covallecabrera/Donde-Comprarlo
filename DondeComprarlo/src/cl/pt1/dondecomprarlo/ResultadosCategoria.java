@@ -1,7 +1,6 @@
 package cl.pt1.dondecomprarlo;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import org.apache.http.NameValuePair;
@@ -12,7 +11,6 @@ import org.json.JSONObject;
 
 
 import android.app.Activity;
-import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -20,9 +18,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 
@@ -48,7 +44,6 @@ public class ResultadosCategoria extends Activity {
 	private static final String TAG_productos = "productos";
 	private static final String TAG_ID = "id_productos";
 	private static final String TAG_NOMBRE = "nombre_producto";
-	private static final String TAG_DESCRIPCION = "descripcion_producto";
 	private static final String TAG_PRECIO = "precio_producto";
 	private static final String TAG_IMAGEN = "imagen_producto1";
 

@@ -11,7 +11,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 
-import android.app.Activity;
+
 import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -28,7 +28,6 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class BusquedaCategoria extends ListActivity{
 

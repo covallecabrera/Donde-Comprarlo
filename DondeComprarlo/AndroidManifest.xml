@@ -54,6 +54,10 @@
          android:name=".InformacionProductos"
          android:label="Información Producto" >
         </activity>  
+        <activity
+         android:name=".ImagenCompleta"
+         android:label="Imágen Grande" >
+        </activity>  
 
     </application>
 

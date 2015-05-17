@@ -13,6 +13,7 @@
             android:id="@+id/imageView1"
             android:layout_width="match_parent"
             android:layout_height="208dp"
+            android:onClick="cargarImagen"
             android:src="@drawable/ic_launcher" />
 
     </LinearLayout>
@@ -33,6 +34,7 @@
         android:layout_alignParentRight="true"
         android:scaleType="centerInside"
         android:gravity="right|center_vertical"
+        android:onClick="cargarImagen1"
         android:padding="10px" />
 
             <ImageView
@@ -42,6 +44,7 @@
         android:layout_alignParentRight="true"
         android:scaleType="centerInside"
         android:gravity="right|center_vertical"
+        android:onClick="cargarImagen2"
         android:padding="10px"  />
 
             <ImageView
@@ -51,6 +54,7 @@
         android:layout_alignParentRight="true"
         android:scaleType="centerInside"
         android:gravity="right|center_vertical"
+        android:onClick="cargarImagen3"
         android:padding="10px"  />
 
         </LinearLayout>
@@ -60,12 +64,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
-
-        <TextView
-            android:id="@+id/textView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Nombre Producto: " />
 
         <TextView
             android:id="@+id/nombre"
@@ -80,12 +78,6 @@
         android:layout_height="wrap_content" >
 
         <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Descripción Producto: " />
-
-        <TextView
             android:id="@+id/descripcion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -96,12 +88,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
-
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Precio Producto: " />
 
         <TextView
             android:id="@+id/precio"
@@ -116,12 +102,6 @@
         android:layout_height="wrap_content" >
 
         <TextView
-            android:id="@+id/textView7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Marca Producto: " />
-
-        <TextView
             android:id="@+id/marca"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -132,12 +112,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
-
-        <TextView
-            android:id="@+id/textView9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Categoría Producto: " />
 
         <TextView
             android:id="@+id/categoria"
