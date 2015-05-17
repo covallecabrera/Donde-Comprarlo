@@ -1,6 +1,9 @@
 package cl.pt1.dondecomprarlo;
 
+import java.io.IOException;
 import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -17,6 +20,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Rect;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,7 +37,7 @@ import android.widget.ImageView;
 public class InformacionProductos extends Activity{
 
 
-	String buscar,nombre,descripcion,precio,marca,categoria,id;
+	String buscar,nombre,descripcion,precio,marca,categoria,id,img1,img2,img3;
 	private static final String TAG_BUSCAR = "buscar";
 	// Progress Dialog
 	private ProgressDialog pDialog;
@@ -53,6 +57,8 @@ public class InformacionProductos extends Activity{
 	private static final String TAG_DESCRIPCION = "descripcion_producto";
 	private static final String TAG_PRECIO = "precio_producto";
 	private static final String TAG_IMAGEN = "imagen_producto1";
+	private static final String TAG_IMAGEN2 = "imagen_producto2";
+	private static final String TAG_IMAGEN3 = "imagen_producto3";
 	private static final String TAG_CATEGORIA = "nombre_categoria";
 	private static final String TAG_MARCA = "nombre_marca";
 
@@ -124,24 +130,21 @@ public class InformacionProductos extends Activity{
 					// Getting Array of empleados
 					productos = json.getJSONArray(TAG_productos);
 					// looping through All empleados
-					
+
 					for (int i = 0; i < productos.length(); i++) {
 						JSONObject c = productos.getJSONObject(i);
 
 						// Storing each json item in variable
-						 id = c.getString(TAG_ID);
-						 nombre = c.getString(TAG_NOMBRE);
-						 descripcion = c.getString(TAG_DESCRIPCION);
-						 precio = c.getString(TAG_PRECIO);
-						//String imagen = c.getString(TAG_IMAGEN);
-						 categoria = c.getString(TAG_CATEGORIA);
-						 marca = c.getString(TAG_MARCA);
-						System.out.println("MUUUCHA "+id);
+						id = c.getString(TAG_ID);
+						nombre = c.getString(TAG_NOMBRE);
+						descripcion = c.getString(TAG_DESCRIPCION);
+						precio = c.getString(TAG_PRECIO);
+						categoria = c.getString(TAG_CATEGORIA);
+						marca = c.getString(TAG_MARCA);
+						img1 = c.getString(TAG_IMAGEN);
+						img2 = c.getString(TAG_IMAGEN2);
+						img3 = c.getString(TAG_IMAGEN3);
 					}
-						
-
-				
-
 
 				} else {
 					// no empleados found
@@ -172,16 +175,21 @@ public class InformacionProductos extends Activity{
 
 
 		protected void onPostExecute(String file_url) {
+
 			// dismiss the dialog after getting all productos
-			
 			pDialog.dismiss();
-			
+			// Inicializando los TextView con sus respectivos id.
 			TextView nombre1 = (TextView) findViewById(R.id.nombre);
 			TextView descripcion1 = (TextView) findViewById(R.id.descripcion);
 			TextView precio1 = (TextView) findViewById(R.id.precio);
 			TextView categoria1 = (TextView) findViewById(R.id.categoria);
 			TextView marca1 = (TextView) findViewById(R.id.marca);
-			
+			// Mostrando Imagen en ImageView
+			new DownloadImageTask((ImageView) findViewById(R.id.imageView1)) .execute(img1);
+			new DownloadImageTask((ImageView) findViewById(R.id.imageView2)) .execute(img1);
+			new DownloadImageTask((ImageView) findViewById(R.id.imageView3)) .execute(img2);
+			new DownloadImageTask((ImageView) findViewById(R.id.imageView4)) .execute(img3);
+			// Seteando valores en los TextView
 			nombre1.setText(nombre);
 			descripcion1.setText(descripcion);
 			precio1.setText(precio);
@@ -190,47 +198,24 @@ public class InformacionProductos extends Activity{
 		}
 
 
-		// download Google Account profile image, to complete profile
-
-		public class LoadProfileImage extends AsyncTask<String, Void, Bitmap> {
-
-			ImageView downloadedImage;
-
-			//
-
-			public LoadProfileImage(ImageView image) {
-
-				this.downloadedImage = image;
-			}
-
-			//
-
-			protected Bitmap doInBackground(String... urls){ 
-				String url = urls[0];
-				Bitmap icon = null;
-
-				try {
-
-					InputStream in = new java.net.URL(url).openStream();
-
-					icon = BitmapFactory.decodeStream(in);
-
+		private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> { 
+			ImageView bmImage;
+			public DownloadImageTask(ImageView bmImage) { 
+				this.bmImage = bmImage; 
+			} 
+			protected Bitmap doInBackground(String... urls) { 
+				String urldisplay = urls[0]; Bitmap mIcon11 = null; 
+				try { 
+					InputStream in = new java.net.URL(urldisplay).openStream(); 
+					mIcon11 = BitmapFactory.decodeStream(in);
 				} catch (Exception e) {
-
 					Log.e("Error", e.getMessage());
-
 					e.printStackTrace();
-
 				}
-
-				return icon;
-
-			}
-
-			protected void onPostExecute(Bitmap result) {
-
-				downloadedImage.setImageBitmap(result);
-
+				return mIcon11; 
+			} 
+			protected void onPostExecute(Bitmap result) { 
+				bmImage.setImageBitmap(result); 
 			}
 
 		}

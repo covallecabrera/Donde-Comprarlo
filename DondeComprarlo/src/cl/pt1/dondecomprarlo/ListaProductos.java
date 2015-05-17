@@ -12,13 +12,16 @@ import org.json.JSONObject;
 
 import android.app.ListActivity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
@@ -138,7 +141,6 @@ public class ListaProductos extends ListActivity{
 							// productos found
 							// Getting Array of empleados
 							productos = json.getJSONArray(TAG_productos);
-							System.out.println("Se encontraron productos");
 							// looping through All empleados
 							for (int i = 0; i < productos.length(); i++) {
 								JSONObject c = productos.getJSONObject(i);
@@ -208,8 +210,8 @@ public class ListaProductos extends ListActivity{
 							ListAdapter adapter = new SimpleAdapter(
 									ListaProductos.this, productosList,
 									R.layout.list_item, new String[] { TAG_ID,
-											TAG_NOMBRE, TAG_DESCRIPCION, TAG_PRECIO,TAG_IMAGEN },
-									new int[] { R.id.id1, R.id.nombre,R.id.descripcion,R.id.precio,R.id.imagen1 });
+											TAG_NOMBRE, TAG_PRECIO,TAG_IMAGEN },
+									new int[] { R.id.id1, R.id.nombre,R.id.precio,R.id.imagen1 });
 							// updating listview
 							setListAdapter(adapter);
 						}
@@ -266,7 +268,9 @@ public class ListaProductos extends ListActivity{
 
 				 }
 	
-			}		
+			}	
+			
+			
 
 }
 
