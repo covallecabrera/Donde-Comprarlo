@@ -80,6 +80,7 @@ public class InformacionProductos extends Activity{
 				in.putExtra(TAG_IMG, img);
 				in.putExtra(TAG_BUSCAR, buscar);
 				startActivityForResult(in, 100);
+				finish();
 	}
 	public void cargarImagen1(View v){
 		img =img1;

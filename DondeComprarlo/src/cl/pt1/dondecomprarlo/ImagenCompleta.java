@@ -45,6 +45,7 @@ public class ImagenCompleta extends Activity{
 		// sending pid to next activity
 		in.putExtra(TAG_BUSCAR, id);
 		startActivityForResult(in, 100);
+		finish();
 	}
 	
 

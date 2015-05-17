@@ -62,8 +62,6 @@ public class BusquedaCriterio extends Activity{
 
 		setContentView(R.layout.busqueda_criterio);
 
-		//		resultadosBusqueda = (Button) findViewById(R.id.resultadosBusqueda);
-		//		resultadosBusqueda.setOnClickListener();
 		// Loading categorias in Background Thread
 		new LoadAllCategorias().execute();
 		///////////
@@ -195,20 +193,9 @@ public class BusquedaCriterio extends Activity{
 			spinnerCategorias.setOnItemSelectedListener(new OnItemSelectedListener() {
 				@Override
 				public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-					//Toast.makeText(arg0.getContext(), "Seleccionado: " + arg0.getItemAtPosition(arg2).toString(), Toast.LENGTH_SHORT).show();
 					categorias = arg0.getItemAtPosition(arg2).toString();
-					//Toast.makeText(arg0.getContext(), "Seleccionado id: " + categorias_id.get(arg2), Toast.LENGTH_SHORT).show();
 					categorias_id = idcategoriaList.get(arg2).toString();
-					/*			
-					Intent i = getIntent();
-					buscar = i.getStringExtra(TAG_BUSCAR); */
-					// Hashmap for ListView
 
-
-					//					Intent in = new Intent(getApplicationContext(),
-					//							CargarMarcasCategoria.class);
-					//					// sending pid to next activity
-					//					in.putExtra(TAG_ID_CATEGORIA, categorias_id);
 					buscar = categorias_id;
 					new CargarMarcasCategoria().execute();
 				}
@@ -303,7 +290,7 @@ public class BusquedaCriterio extends Activity{
 			return null;
 		}
 		protected void onPostExecute(String file_url) {
-			//dismiss the dialog after getting all categorias
+//			dismiss the dialog after getting all categorias
 			pDialog.dismiss();
 			Spinner spinnerMarcas;
 
@@ -316,9 +303,7 @@ public class BusquedaCriterio extends Activity{
 			spinnerMarcas.setOnItemSelectedListener(new OnItemSelectedListener() {
 				@Override
 				public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-					//Toast.makeText(arg0.getContext(), "Seleccionado: " + arg0.getItemAtPosition(arg2).toString(), Toast.LENGTH_SHORT).show();
 					marcas = arg0.getItemAtPosition(arg2).toString();
-					//Toast.makeText(arg0.getContext(), "Seleccionado id: " + categorias_id.get(arg2), Toast.LENGTH_SHORT).show();
 					marca_id = idmarcaList.get(arg2).toString();
 
 				}
