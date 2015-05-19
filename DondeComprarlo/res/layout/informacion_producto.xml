@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fondo"
     android:orientation="vertical" >
 
     <LinearLayout
@@ -13,9 +14,7 @@
             android:id="@+id/imageView1"
             android:layout_width="match_parent"
             android:layout_height="208dp"
-            android:onClick="cargarImagen"
-            android:src="@drawable/ic_launcher" />
-
+            android:onClick="cargarImagen" />
     </LinearLayout>
 
     <LinearLayout
@@ -29,34 +28,30 @@
 
             <ImageView
                 android:id="@+id/imageView2"
-       android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignParentRight="true"
-        android:scaleType="centerInside"
-        android:gravity="right|center_vertical"
-        android:onClick="cargarImagen1"
-        android:padding="10px" />
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:gravity="right|center_vertical"
+                android:onClick="cargarImagen1"
+                android:padding="10px"
+                android:scaleType="centerInside" />
 
             <ImageView
                 android:id="@+id/imageView3"
-       android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignParentRight="true"
-        android:scaleType="centerInside"
-        android:gravity="right|center_vertical"
-        android:onClick="cargarImagen2"
-        android:padding="10px"  />
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:gravity="right|center_horizontal"
+                android:onClick="cargarImagen2"
+                android:padding="10px"
+                android:scaleType="centerInside" />
 
             <ImageView
                 android:id="@+id/imageView4"
-       android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignParentRight="true"
-        android:scaleType="centerInside"
-        android:gravity="right|center_vertical"
-        android:onClick="cargarImagen3"
-        android:padding="10px"  />
-
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:gravity="right|center_vertical"
+                android:onClick="cargarImagen3"
+                android:padding="10px"
+                android:scaleType="centerInside" />
         </LinearLayout>
 
     </LinearLayout>
@@ -70,7 +65,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView" />
-
     </LinearLayout>
 
     <LinearLayout
@@ -82,7 +76,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView" />
-
     </LinearLayout>
 
     <LinearLayout
@@ -94,7 +87,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView" />
-
     </LinearLayout>
 
     <LinearLayout
@@ -106,7 +98,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView" />
-
     </LinearLayout>
 
     <LinearLayout
@@ -118,7 +109,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView" />
-
     </LinearLayout>
 
 </LinearLayout>

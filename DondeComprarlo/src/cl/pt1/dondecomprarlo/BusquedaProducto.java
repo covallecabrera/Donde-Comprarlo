@@ -31,7 +31,7 @@ public class BusquedaProducto extends Activity{
 	String buscar,producto,product,img1;
 	private static final String TAG_BUSCAR = "buscar";
 	// Progress Dialog
-	private ProgressDialog pDialog;
+	private ProgressDialog pDialog,error;
 
 	// Creating JSON Parser object
 	JSONParser jParser = new JSONParser();
@@ -154,13 +154,10 @@ public class BusquedaProducto extends Activity{
 						productosDisponibles.add(c);
 					}
 				} else {
-					// no empleados found
-					// Launch Add New Empleado Activity
-					/*Intent i = new Intent(getApplicationContext(),
-								NewEmpladoActivity.class);
-						// Closing all previous activities
-						i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-						startActivity(i);*/
+			
+					Productos c = new Productos(1,"No se encontro Producto",
+							" No Disponible");
+					productosDisponibles.add(c);
 
 					System.out.println("No se han encontrado productos");
 				}

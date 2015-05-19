@@ -164,13 +164,9 @@ public class ResultadosCriterio extends Activity {
 						productosDisponibles.add(c);
 					}
 				} else {
-					// no empleados found
-					// Launch Add New Empleado Activity
-					/*Intent i = new Intent(getApplicationContext(),
-								NewEmpladoActivity.class);
-						// Closing all previous activities
-						i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-						startActivity(i);*/
+					Productos c = new Productos(1,"No se encontro Producto",
+							" No Disponible");
+					productosDisponibles.add(c);
 
 					System.out.println("No se han encontrado productos");
 				}

@@ -23,6 +23,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -31,7 +32,8 @@ import android.widget.TextView;
 
 public class BusquedaCategoria extends ListActivity{
 
-	
+	EditText txtbuscar;
+
 	String buscar,id_marca;
 	private static final String TAG_BUSCAR = "buscar";
 	// Progress Dialog
@@ -63,7 +65,6 @@ public class BusquedaCategoria extends ListActivity{
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.busqueda_categoria);
-		System.out.println("onCreate");
 		marcaList = new ArrayList<HashMap<String, String>>();
 		// Loading categorias in Background Thread
 		new LoadAllCategorias().execute();
@@ -98,6 +99,22 @@ public class BusquedaCategoria extends ListActivity{
 
 	}
 
+	 public void BusquedaProducto(View v){
+		 txtbuscar = (EditText) findViewById(R.id.TextoBuscar);
+         String buscar;
+         buscar = txtbuscar.getText().toString();
+       System.out.println("aprete click en busqueda bategoria");
+      // Starting new intent
+ 		Intent in = new Intent(getApplicationContext(),
+ 				BusquedaProducto.class);
+ 		// sending pid to next activity
+ 		in.putExtra(TAG_BUSCAR, buscar);
+ 		
+ 		// starting new activity and expecting some response back
+ 		startActivityForResult(in, 100);
+         
+	 }
+	
 	/**
 	 * Background Async Task to Load all Productos by making HTTP Request
 	 * */
@@ -289,13 +306,8 @@ public class BusquedaCategoria extends ListActivity{
 						marcaList.add(map);
 					}
 				} else {
-					// no empleados found
-					// Launch Add New Empleado Activity
-					/*Intent i = new Intent(getApplicationContext(),
-									NewEmpladoActivity.class);
-							// Closing all previous activities
-							i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-							startActivity(i);*/
+
+
 
 					System.out.println("No se han encontrado marcas");
 				}

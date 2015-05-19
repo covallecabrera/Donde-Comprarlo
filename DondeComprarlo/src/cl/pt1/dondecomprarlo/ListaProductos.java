@@ -173,9 +173,9 @@ public class ListaProductos extends Activity{
 			// dismiss the dialog after getting all productos
 			pDialog.dismiss();
 
-			// Creamos el objeto CityAdapter y lo asignamos al ListView 
-			ProductosAdapter cityAdapter = new ProductosAdapter(ListaProductos.this, productosDisponibles);
-			lvProductos.setAdapter(cityAdapter);	
+			// Creamos el objeto productAdapter y lo asignamos al ListView 
+			ProductosAdapter productAdapter = new ProductosAdapter(ListaProductos.this, productosDisponibles);
+			lvProductos.setAdapter(productAdapter);	
 
 
 		}

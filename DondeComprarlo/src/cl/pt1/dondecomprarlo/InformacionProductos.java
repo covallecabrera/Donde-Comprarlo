@@ -80,7 +80,7 @@ public class InformacionProductos extends Activity{
 				in.putExtra(TAG_IMG, img);
 				in.putExtra(TAG_BUSCAR, buscar);
 				startActivityForResult(in, 100);
-				finish();
+				//finish();
 	}
 	public void cargarImagen1(View v){
 		img =img1;
@@ -160,12 +160,8 @@ public class InformacionProductos extends Activity{
 
 				} else {
 					// no empleados found
-					// Launch Add New Empleado Activity
-					/*Intent i = new Intent(getApplicationContext(),
-									NewEmpladoActivity.class);
-							// Closing all previous activities
-							i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-							startActivity(i);*/
+					
+
 
 					System.out.println("No se han encontrado productos");
 				}

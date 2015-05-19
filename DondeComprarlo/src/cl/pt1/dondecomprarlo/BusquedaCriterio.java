@@ -271,13 +271,7 @@ public class BusquedaCriterio extends Activity{
 
 					}
 				} else {
-					// no empleados found
-					// Launch Add New Empleado Activity
-					/*Intent i = new Intent(getApplicationContext(),
-									NewEmpladoActivity.class);
-							// Closing all previous activities
-							i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-							startActivity(i);*/
+
 
 					System.out.println("No se han encontrado marcas");
 				}
