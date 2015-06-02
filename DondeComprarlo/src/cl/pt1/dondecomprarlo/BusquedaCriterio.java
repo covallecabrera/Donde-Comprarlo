@@ -38,8 +38,8 @@ public class BusquedaCriterio extends Activity{
 	// Creating JSON Parser object
 	JSONParser jParser = new JSONParser();
 
-	private static String url_all_categoria = "http://192.168.0.5/donde_comprarlo/busqueda_categoria.php";
-	private static String url_all_marcas = "http://192.168.0.5/donde_comprarlo/mostrar_marcas_categoria.php";
+	private static String url_all_categoria = servidor.ip() + servidor.ruta() +"busqueda_categoria.php";
+	private static String url_all_marcas = servidor.ip() + servidor.ruta() +"mostrar_marcas_categoria.php";
 
 	// JSON Node names
 	private static final String TAG_SUCCESS = "success";
@@ -82,7 +82,7 @@ public class BusquedaCriterio extends Activity{
 		Intent in = new Intent(getApplicationContext(),
 				ResultadosCriterio.class);
 		// sending pid to next activity
-		in.putExtra(TAG_BUSCAR, buscar);
+		in.putExtra(TAG_BUSCAR, buscar);//id categoria...
 		in.putExtra(TAG_ID_MARCA, id_marca);
 		in.putExtra(TAG_NOM_PRODUCTO,nomb_producto);
 		in.putExtra(TAG_PRE_PRODUCTO,prec_producto);
@@ -152,7 +152,7 @@ public class BusquedaCriterio extends Activity{
 						String nombre = c.getString(TAG_NOMBRE_CATEGORIA);
 
 						// Agregando datos a las listas
-						categoriaList.add(nombre);
+						categoriaList.add("  ·  "+nombre);
 						idcategoriaList.add(id);
 
 
@@ -266,7 +266,7 @@ public class BusquedaCriterio extends Activity{
 
 
 						idmarcaList.add(id_marca);
-						marcaList.add(nombre_marca);
+						marcaList.add("  ·  "+nombre_marca);
 
 
 					}

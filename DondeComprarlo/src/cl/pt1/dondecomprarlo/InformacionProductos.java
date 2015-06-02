@@ -16,6 +16,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -36,7 +37,7 @@ public class InformacionProductos extends Activity{
 
 	ArrayList<HashMap<String, String>> productosList;
 
-	private static String url_all_productos = "http://192.168.0.5/donde_comprarlo/informacion_producto.php";
+	private static String url_all_productos = servidor.ip() + servidor.ruta() +"informacion_producto.php";
 
 	// JSON Node names
 	private static final String TAG_SUCCESS = "success";
@@ -59,16 +60,16 @@ public class InformacionProductos extends Activity{
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.informacion_producto);
-		// getting Empleado details from intent
+		// tomando datos de intent
 		Intent i = getIntent();
 
 
-		// getting Empleado id (pid) from intent
+		// sacando el id del producto del intent
 		buscar = i.getStringExtra(TAG_BUSCAR);
 		// Hashmap for ListView
 		productosList = new ArrayList<HashMap<String, String>>();
 
-		// Loading empleados in Background Thread
+		// Cargar productos en Background Thread
 		new LoadProductos().execute();
 
 	}
@@ -78,10 +79,11 @@ public class InformacionProductos extends Activity{
 						ImagenCompleta.class);
 				// sending pid to next activity
 				in.putExtra(TAG_IMG, img);
-				in.putExtra(TAG_BUSCAR, buscar);
+				in.putExtra(TAG_BUSCAR, buscar); //id_producto
 				startActivityForResult(in, 100);
 				//finish();
 	}
+	// Poniendo imagenes en ImageView tras hacerle click a las pequeñas.
 	public void cargarImagen1(View v){
 		img =img1;
 		new DownloadImageTask((ImageView) findViewById(R.id.imageView1)) .execute(img);
@@ -138,9 +140,9 @@ public class InformacionProductos extends Activity{
 
 				if (success == 1) {
 					// productos found
-					// Getting Array of empleados
+					// Getting Array of productos
 					productos = json.getJSONArray(TAG_productos);
-					// looping through All empleados
+					// looping through All productos
 
 					for (int i = 0; i < productos.length(); i++) {
 						JSONObject c = productos.getJSONObject(i);
@@ -159,10 +161,8 @@ public class InformacionProductos extends Activity{
 					}
 
 				} else {
-					// no empleados found
+					// no productos found
 					
-
-
 					System.out.println("No se han encontrado productos");
 				}
 

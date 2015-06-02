@@ -39,7 +39,7 @@ public class BusquedaProducto extends Activity{
 	ListView lvProductos;
 	
 
-	private static String url_all_productos = "http://192.168.0.5/donde_comprarlo/busqueda.php";
+	private static String url_all_productos = servidor.ip() + servidor.ruta() +"busqueda.php";
 
 	// JSON Node names
 	private static final String TAG_SUCCESS = "success";
@@ -136,16 +136,16 @@ public class BusquedaProducto extends Activity{
 
 				if (success == 1) {
 					// productos found
-					// Getting Array of empleados
+					// Getting Array of producto
 					productosjson = json.getJSONArray(TAG_productos);
-					// looping through All empleados
+					// looping through All productos
 					for (int i = 0; i < productosjson.length(); i++) {
 						JSONObject producto = productosjson.getJSONObject(i);
-
+						// Creamos objeto de tipo Productos
 						Productos c = new Productos(producto.getInt(TAG_ID), producto.getString(TAG_NOMBRE),
 								producto.getString(TAG_PRECIO));
 						img1=producto.getString(TAG_IMAGEN);
-						// Creamos el objeto City
+					
 
 						c.setData(producto.getString(TAG_IMAGEN));
 

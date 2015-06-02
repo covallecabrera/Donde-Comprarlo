@@ -9,7 +9,7 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
+import cl.pt1.dondecomprarlo.servidor;
 
 
 import android.app.ListActivity;
@@ -42,9 +42,11 @@ public class BusquedaCategoria extends ListActivity{
 	// Creating JSON Parser object
 	JSONParser jParser = new JSONParser();
 
-	private static String url_all_categoria = "http://192.168.0.5/donde_comprarlo/busqueda_categoria.php";
-	private static String url_all_marcas = "http://192.168.0.5/donde_comprarlo/mostrar_marcas_categoria.php";
-
+	
+	private static String url_all_categoria = servidor.ip() + servidor.ruta() + "busqueda_categoria.php";
+	private static String url_all_marcas = servidor.ip() + servidor.ruta() + "mostrar_marcas_categoria.php";
+	
+	
 	// JSON Node names
 	private static final String TAG_SUCCESS = "success";
 	private static final String TAG_categoria = "categoria";
@@ -72,8 +74,8 @@ public class BusquedaCategoria extends ListActivity{
 		// Get listview
 		ListView lv = getListView();
 
-		// on seleting single Empleado
-		// launching Edit Empleado Screen
+		// Al seleccionar una categoria
+
 		lv.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
@@ -84,14 +86,14 @@ public class BusquedaCategoria extends ListActivity{
 						.toString();
 				buscar = categorias_id; 
 
-				// Starting new intent
+				// Nuevo Intent
 				Intent in = new Intent(getApplicationContext(),
 						ResultadosCategoria.class);
-				// sending pid to next activity
-				in.putExtra(TAG_BUSCAR, buscar);
+				// Enviando datos en intent
+				in.putExtra(TAG_BUSCAR, buscar); //TAG_BUSCAR= id_categoria
 				in.putExtra(TAG_ID_MARCA, id_marca);
 				
-				// starting new activity and expecting some response back
+				// empezando actividad.
 				startActivityForResult(in, 100);
 			}
 		});
@@ -104,13 +106,13 @@ public class BusquedaCategoria extends ListActivity{
          String buscar;
          buscar = txtbuscar.getText().toString();
        System.out.println("aprete click en busqueda bategoria");
-      // Starting new intent
+      // Nuevo Intent
  		Intent in = new Intent(getApplicationContext(),
  				BusquedaProducto.class);
- 		// sending pid to next activity
+ 		// Enviando datos en intent
  		in.putExtra(TAG_BUSCAR, buscar);
  		
- 		// starting new activity and expecting some response back
+ 		// empezando actividad
  		startActivityForResult(in, 100);
          
 	 }
@@ -128,7 +130,6 @@ public class BusquedaCategoria extends ListActivity{
 		 * */
 		@Override
 		protected void onPreExecute() {
-			System.out.println("2");
 			super.onPreExecute();
 			pDialog = new ProgressDialog(BusquedaCategoria.this);
 			pDialog.setMessage("Cargando Categorias. Por favor, espere...");
@@ -144,7 +145,6 @@ public class BusquedaCategoria extends ListActivity{
 		 * getting All categorias from url
 		 * */
 		protected String doInBackground(String... args) {
-			System.out.println("Class doInBc");
 			// Building Parameters
 			List<NameValuePair> params = new ArrayList<NameValuePair>();
 
@@ -175,7 +175,7 @@ public class BusquedaCategoria extends ListActivity{
 						String nombre = c.getString(TAG_NOMBRE_CATEGORIA);
 
 						// Agregando datos a las listas
-						categoriaList.add(nombre);
+						categoriaList.add("  ·  "+nombre);
 						idcategoriaList.add(id);
 
 
@@ -216,20 +216,11 @@ public class BusquedaCategoria extends ListActivity{
 			spinnerCategorias.setOnItemSelectedListener(new OnItemSelectedListener() {
 				@Override
 				public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-					//Toast.makeText(arg0.getContext(), "Seleccionado: " + arg0.getItemAtPosition(arg2).toString(), Toast.LENGTH_SHORT).show();
 					categorias = arg0.getItemAtPosition(arg2).toString();
-					//Toast.makeText(arg0.getContext(), "Seleccionado id: " + categorias_id.get(arg2), Toast.LENGTH_SHORT).show();
 					categorias_id = idcategoriaList.get(arg2).toString();
-		/*			
-					Intent i = getIntent();
-					buscar = i.getStringExtra(TAG_BUSCAR); */
-					// Hashmap for ListView
+		
 					marcaList = new ArrayList<HashMap<String, String>>();
-					
-//					Intent in = new Intent(getApplicationContext(),
-//							CargarMarcasCategoria.class);
-//					// sending pid to next activity
-//					in.putExtra(TAG_ID_CATEGORIA, categorias_id);
+
 					buscar = categorias_id;
 					new CargarMarcasCategoria().execute();
 				}
@@ -320,7 +311,7 @@ public class BusquedaCategoria extends ListActivity{
 			return null;
 		}
 		protected void onPostExecute(String file_url) {
-			// dismiss the dialog after getting all productos
+			// dismiss the dialog after getting all marcas
 			pDialog.dismiss();
 			System.out.println("onPostEx");
 			// updating UI from Background Thread
@@ -330,14 +321,12 @@ public class BusquedaCategoria extends ListActivity{
 					 * Updating parsed JSON data into ListView
 					 * */
 					
-					//ImageView image = (ImageView) findViewById(R.id.imagen1);
-					//new LoadProfileImage(image).execute(TAG_IMAGEN);
 					ListAdapter adapter = new SimpleAdapter(
 							BusquedaCategoria.this, marcaList,
 							R.layout.list_item_busqueda, new String[] { TAG_ID_MARCA,
 									TAG_NOMBRE_MARCA},
 									new int[] { R.id.id1, R.id.nombre});
-					// updating listview
+					// actualzizar listview
 					setListAdapter(adapter);
 				}
 			});

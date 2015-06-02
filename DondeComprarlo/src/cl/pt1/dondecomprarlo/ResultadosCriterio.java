@@ -40,7 +40,7 @@ public class ResultadosCriterio extends Activity {
 	
 
 
-	private static String url_all_productos = "http://192.168.0.5/donde_comprarlo/busqueda_criterios.php";
+	private static String url_all_productos = servidor.ip() + servidor.ruta() +"busqueda_criterios.php";
 
 	// JSON Nodos
 	private static final String TAG_SUCCESS = "success";

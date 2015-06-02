@@ -34,7 +34,7 @@ public class ListaProductos extends Activity{
 	//	ArrayList<HashMap<String, String>> productosList;
 	ArrayList<Productos> productosDisponibles;
 	ListView lvProductos;
-	private static String url_all_productos = "http://192.168.0.5/donde_comprarlo/productos.php";
+	private static String url_all_productos = servidor.ip() + servidor.ruta() +"productos.php";
 
 	// JSON Node names
 	private static final String TAG_SUCCESS = "success";

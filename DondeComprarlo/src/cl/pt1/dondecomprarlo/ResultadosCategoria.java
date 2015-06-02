@@ -37,7 +37,7 @@ public class ResultadosCategoria extends Activity {
 	ListView lvProductos;
 
 
-	private static String url_all_productos = "http://192.168.0.5/donde_comprarlo/mostrar_productos_marca.php";
+	private static String url_all_productos = servidor.ip() + servidor.ruta() +"mostrar_productos_marca.php";
 
 	// JSON Nodos
 	private static final String TAG_SUCCESS = "success";
@@ -59,7 +59,7 @@ public class ResultadosCategoria extends Activity {
 
 
 		// Recibiendo los datos del Intent
-		buscar = i.getStringExtra(TAG_BUSCAR);
+		buscar = i.getStringExtra(TAG_BUSCAR); //id_categoria
 		buscar1 = i.getStringExtra(TAG_ID_MARCA);
 
 
@@ -70,21 +70,22 @@ public class ResultadosCategoria extends Activity {
 		// Llamando Clase LoadProductos
 		new LoadProductos().execute();
 
+		// Programar Click en ListView.
 		lvProductos.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+				//Tomando datos del TextView en donde se encuentra el id del producto, para mandarlo a InformaciónProducto
 				product = ((TextView) view.findViewById(R.id.id1)).getText()
 						.toString();
 
 
-				// Starting new intent
+				// Empezando el nuevo Intent
 				Intent in = new Intent(getApplicationContext(),
 						InformacionProductos.class);
-				// sending pid to next activity
+				// mandando an intent el TAG_BUSCAR, que el entra el id del producto al que se le hizo click.
 				in.putExtra(TAG_BUSCAR, product);
 
-				// starting new activity and expecting some response back
+				// Se empieza la nueva actividad, esperando una respuesta de vuelta...
 				startActivityForResult(in, 100);
 
 			}
@@ -176,9 +177,9 @@ public class ResultadosCategoria extends Activity {
 		protected void onPostExecute(String file_url) {
 			// dismiss the dialog after getting all productos
 			pDialog.dismiss();
-			// Creamos el objeto CityAdapter y lo asignamos al ListView 
-			ProductosAdapter cityAdapter = new ProductosAdapter(ResultadosCategoria.this, productosDisponibles);
-			lvProductos.setAdapter(cityAdapter);	
+			// Creamos el objeto productAdapter y lo asignamos al ListView 
+			ProductosAdapter productAdapter = new ProductosAdapter(ResultadosCategoria.this, productosDisponibles);
+			lvProductos.setAdapter(productAdapter);	
 
 
 		}
