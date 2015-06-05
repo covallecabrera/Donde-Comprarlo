@@ -155,7 +155,7 @@ public class BusquedaProducto extends Activity{
 					}
 				} else {
 			
-					Productos c = new Productos(1,"No se encontro Producto",
+					Productos c = new Productos(1,"No hay productos",
 							" No Disponible");
 					productosDisponibles.add(c);
 

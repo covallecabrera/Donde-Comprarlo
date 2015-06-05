@@ -56,6 +56,40 @@
             android:ems="10" />
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ordenar por Precio:" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <RadioGroup
+            android:id="@+id/rdgGrupo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_span="3"
+            android:checkedButton="@+id/asc"
+            android:orientation="horizontal" >
+
+            <RadioButton
+                android:id="@+id/asc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ascendente" />
+
+            <RadioButton
+                android:id="@+id/desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Descendente" />
+
+        </RadioGroup>
+    </LinearLayout>
+
     <Button
         android:id="@+id/resultadosBusqueda"
         android:layout_width="fill_parent"

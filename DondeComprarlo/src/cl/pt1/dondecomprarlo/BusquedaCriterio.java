@@ -21,17 +21,20 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 
 
 public class BusquedaCriterio extends Activity{
 
 	//	Button resultadosBusqueda;
-	String buscar,id_marca;
+	String buscar,id_marca,orden;
 	EditText nom_producto,pre_producto;
+	RadioButton asc,desc;
 	private static final String TAG_BUSCAR = "buscar";
 	private static final String TAG_NOM_PRODUCTO = "nom_producto";
 	private static final String TAG_PRE_PRODUCTO = "pre_producto";
+	private static final String TAG_ORDEN_PRODUCTO = "orden";
 	// Progress Dialog
 	private ProgressDialog pDialog;
 
@@ -78,6 +81,14 @@ public class BusquedaCriterio extends Activity{
 		String nomb_producto, prec_producto;
 		nomb_producto = nom_producto.getText().toString();
 		prec_producto = pre_producto.getText().toString();
+		 
+		asc = (RadioButton)findViewById(R.id.asc);
+		desc = (RadioButton)findViewById(R.id.desc);
+        if (asc.isChecked() == true){
+            orden = "ASC";	
+        }else if (desc.isChecked() == true){
+            orden = "DESC";
+        }
 		// Starting new intent
 		Intent in = new Intent(getApplicationContext(),
 				ResultadosCriterio.class);
@@ -86,7 +97,8 @@ public class BusquedaCriterio extends Activity{
 		in.putExtra(TAG_ID_MARCA, id_marca);
 		in.putExtra(TAG_NOM_PRODUCTO,nomb_producto);
 		in.putExtra(TAG_PRE_PRODUCTO,prec_producto);
-
+		in.putExtra(TAG_ORDEN_PRODUCTO,orden);
+		
 		// starting new activity and expecting some response back
 		startActivityForResult(in, 100);
 

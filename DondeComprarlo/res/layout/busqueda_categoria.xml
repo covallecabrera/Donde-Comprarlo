@@ -10,31 +10,11 @@
         android:layout_height="wrap_content"
         android:orientation="vertical" >
 
-        <LinearLayout
+        <EditText
+            android:id="@+id/textoBuscar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
-
-            <EditText
-                android:id="@+id/TextoBuscar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:visibility="gone"
-                android:hint="Ingrese nombre producto" >
-
-                <requestFocus />
-            </EditText>
-
-            <ImageButton
-                android:id="@+id/imageButton1"
-                android:layout_width="20dp"
-                android:layout_height="40dp"
-                android:layout_weight="0.45"
-                android:visibility="gone"
-                android:onClick="BusquedaProducto"
-                android:src="@android:drawable/ic_menu_search" />
-        </LinearLayout>
+            android:layout_height="wrap_content"
+            android:ems="10" />
     </LinearLayout>
 
     <LinearLayout

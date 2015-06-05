@@ -25,11 +25,12 @@ import android.widget.AdapterView.OnItemClickListener;
 
 public class ResultadosCriterio extends Activity {
 
-	String categoria,marca,nombre,precio,producto,product,img1;
+	String categoria,marca,nombre,precio,producto,product,img1,orden;
 	private static final String TAG_BUSCAR = "buscar";
 	private static final String TAG_ID_MARCA = "id_marca";
 	private static final String TAG_NOM_PRODUCTO = "nom_producto";
 	private static final String TAG_PRE_PRODUCTO = "pre_producto";
+	private static final String TAG_ORDEN_PRODUCTO = "orden";
 	// Progress Dialog
 	private ProgressDialog pDialog;
 
@@ -67,7 +68,7 @@ public class ResultadosCriterio extends Activity {
 		marca = i.getStringExtra(TAG_ID_MARCA);
 		nombre = i.getStringExtra(TAG_NOM_PRODUCTO);
 		precio = i.getStringExtra(TAG_PRE_PRODUCTO);
-		
+		orden = i.getStringExtra(TAG_ORDEN_PRODUCTO);
 		if (precio.equals("")){
 			precio = "1000000";
 		}
@@ -132,6 +133,7 @@ public class ResultadosCriterio extends Activity {
 			params.add(new BasicNameValuePair("marca",marca));
 			params.add(new BasicNameValuePair("buscar", nombre));
 			params.add(new BasicNameValuePair("precio_max",precio));
+			params.add(new BasicNameValuePair("orden",orden));
 			// getting JSON string from URL
 
 			JSONObject json = jParser.makeHttpRequest(url_all_productos, "GET", params);
@@ -164,7 +166,7 @@ public class ResultadosCriterio extends Activity {
 						productosDisponibles.add(c);
 					}
 				} else {
-					Productos c = new Productos(1,"No se encontro Producto",
+					Productos c = new Productos(1,"No hay productos",
 							" No Disponible");
 					productosDisponibles.add(c);
 

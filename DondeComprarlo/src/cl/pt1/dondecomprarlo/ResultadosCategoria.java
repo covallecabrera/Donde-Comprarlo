@@ -25,9 +25,10 @@ import android.widget.AdapterView.OnItemClickListener;
 
 public class ResultadosCategoria extends Activity {
 
-	String buscar,buscar1,producto,product,img1;
+	String buscar,buscar1,producto,product,img1,texto;
 	private static final String TAG_BUSCAR = "buscar";
 	private static final String TAG_ID_MARCA = "id_marca";
+	private static final String TAG_TEXTO = "texto";
 	// Progress Dialog
 	private ProgressDialog pDialog;
 
@@ -61,8 +62,8 @@ public class ResultadosCategoria extends Activity {
 		// Recibiendo los datos del Intent
 		buscar = i.getStringExtra(TAG_BUSCAR); //id_categoria
 		buscar1 = i.getStringExtra(TAG_ID_MARCA);
-
-
+		texto = i.getStringExtra(TAG_TEXTO); // Recibiendo el texto a ingresar en la busqueda para productos
+		System.out.println("asdasdasdasd"+texto);
 		// Hashmap para el ListView
 		lvProductos = (ListView) findViewById(R.id.list);
 		productosDisponibles = new ArrayList<Productos>();
@@ -118,6 +119,7 @@ public class ResultadosCategoria extends Activity {
 			List<NameValuePair> params = new ArrayList<NameValuePair>();
 			params.add(new BasicNameValuePair("buscar", buscar));
 			params.add(new BasicNameValuePair("buscar1",buscar1));
+			params.add(new BasicNameValuePair("texto",texto));
 			// getting JSON string from URL
 
 			JSONObject json = jParser.makeHttpRequest(url_all_productos, "GET", params);
@@ -151,7 +153,7 @@ public class ResultadosCategoria extends Activity {
 							productosDisponibles.add(c);
 						}
 					} else {
-						Productos c = new Productos(1,"No se encontro Producto",
+						Productos c = new Productos(1,"No hay productos",
 								" No Disponible");
 						productosDisponibles.add(c);
 

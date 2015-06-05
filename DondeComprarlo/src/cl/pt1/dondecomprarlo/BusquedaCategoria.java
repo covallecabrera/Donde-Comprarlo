@@ -32,10 +32,11 @@ import android.widget.TextView;
 
 public class BusquedaCategoria extends ListActivity{
 
-	EditText txtbuscar;
+	EditText txtbuscar,textoBuscar;
 
-	String buscar,id_marca;
+	String buscar,id_marca,texto;
 	private static final String TAG_BUSCAR = "buscar";
+	private static final String TAG_TEXTO = "texto";
 	// Progress Dialog
 	private ProgressDialog pDialog;
 
@@ -85,14 +86,15 @@ public class BusquedaCategoria extends ListActivity{
 				id_marca = ((TextView) view.findViewById(R.id.id1)).getText()
 						.toString();
 				buscar = categorias_id; 
-
+				textoBuscar = (EditText) findViewById(R.id.textoBuscar);
+				texto=textoBuscar.getText().toString();
 				// Nuevo Intent
 				Intent in = new Intent(getApplicationContext(),
 						ResultadosCategoria.class);
 				// Enviando datos en intent
 				in.putExtra(TAG_BUSCAR, buscar); //TAG_BUSCAR= id_categoria
 				in.putExtra(TAG_ID_MARCA, id_marca);
-				
+				in.putExtra(TAG_TEXTO, texto); // texto en el editText
 				// empezando actividad.
 				startActivityForResult(in, 100);
 			}

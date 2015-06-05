@@ -50,10 +50,14 @@ public class ProductosAdapter extends BaseAdapter {
 	    image.setImageBitmap(productos.getFoto());
 	          
 	    TextView nombre = (TextView) vi.findViewById(R.id.nombre);
-	    nombre.setText("Modelo: "+productos.getNombre());
-	    
 	    TextView precio = (TextView) vi.findViewById(R.id.precio);
-	    precio.setText("Precio: $"+productos.getPrecio());
+	    if(productos.getNombre()=="No hay productos"){
+	    	nombre.setText("No se encontraron coincidencias");
+//		    precio.setText("Precio: "+productos.getPrecio());
+	    }else{
+		    nombre.setText("Modelo: "+productos.getNombre());
+		    precio.setText("Precio: $"+productos.getPrecio());
+	    }
 	    
 	    TextView id = (TextView) vi.findViewById(R.id.id1);
 	    id.setText(Integer.toString(productos.getId()));
