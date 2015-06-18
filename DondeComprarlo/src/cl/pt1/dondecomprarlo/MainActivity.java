@@ -31,7 +31,10 @@ public class MainActivity extends Activity {
 		 Intent i=new Intent(MainActivity.this, BusquedaCriterio.class);
 			startActivity(i);
 	 }
-	 
+	 public void MostrarMapa(View v){
+		 Intent i=new Intent(MainActivity.this, MapaTienda.class);
+			startActivity(i);
+	 }
 	 public void BusquedaProducto(View v){
 		 txtbuscar = (EditText) findViewById(R.id.TextoBuscar);
          String buscar;

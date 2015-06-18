@@ -7,10 +7,26 @@
     <uses-sdk
         android:minSdkVersion="16"
         android:targetSdkVersion="21" />
-	
-    <uses-permission android:name="android.permission.INTERNET"/>
-  <!--  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />  -->
-    
+
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
+
+    <!--
+     <uses-permission android:name="android.permission.INTERNET" />
+     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <!--
+The following two permissions are not required to use
+Google Maps Android API v2, but are recommended.
+    -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/icono"
@@ -30,35 +46,42 @@
             android:name=".ListaProductos"
             android:label="Productos" >
         </activity>
-         <activity
-         android:name=".BusquedaProducto"
-         android:label="Resultado Búsqueda" >
+        <activity
+            android:name=".BusquedaProducto"
+            android:label="Resultado Búsqueda" >
         </activity>
-         <activity
-         android:name=".BusquedaCategoria"
-         android:label="Búsqueda Categoria" >
-        </activity>   
         <activity
-         android:name=".ResultadosCategoria"
-         android:label="Resultado Búsqueda" >
-        </activity>  
+            android:name=".BusquedaCategoria"
+            android:label="Búsqueda Categoria" >
+        </activity>
         <activity
-         android:name=".BusquedaCriterio"
-         android:label="Búsqueda Criterios" >
-        </activity>   
+            android:name=".ResultadosCategoria"
+            android:label="Resultado Búsqueda" >
+        </activity>
         <activity
-         android:name=".ResultadosCriterio"
-         android:label="Resultado Búsqueda" >
-        </activity>  
+            android:name=".BusquedaCriterio"
+            android:label="Búsqueda Criterios" >
+        </activity>
         <activity
-         android:name=".InformacionProductos"
-         android:label="Información Producto" >
-        </activity>  
+            android:name=".ResultadosCriterio"
+            android:label="Resultado Búsqueda" >
+        </activity>
         <activity
-         android:name=".ImagenCompleta"
-         android:label="Imágen Grande" >
-        </activity>  
+            android:name=".InformacionProductos"
+            android:label="Información Producto" >
+        </activity>
+        <activity
+            android:name=".ImagenCompleta"
+            android:label="Imágen Grande" >
+        </activity>
+        <activity
+            android:name=".MapaTienda"
+            android:label="Tiendas" >
+        </activity>
 
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyAXnqQ10lQ54S8fNd2YpPgtDPwLt-zYNbU" />
     </application>
 
 </manifest>
