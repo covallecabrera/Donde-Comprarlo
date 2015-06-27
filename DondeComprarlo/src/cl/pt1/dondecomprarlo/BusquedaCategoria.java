@@ -40,7 +40,7 @@ public class BusquedaCategoria extends ListActivity{
 	// Progress Dialog
 	private ProgressDialog pDialog;
 
-	// Creating JSON Parser object
+	// Creating JSON Parser objecst
 	JSONParser jParser = new JSONParser();
 
 	
@@ -51,8 +51,8 @@ public class BusquedaCategoria extends ListActivity{
 	// JSON Node names
 	private static final String TAG_SUCCESS = "success";
 	private static final String TAG_categoria = "categoria";
-	private static final String TAG_ID_CATEGORIA = "id_categoria";
-	private static final String TAG_NOMBRE_CATEGORIA = "nombre_categoria";
+	private static final String TAG_ID_CATEGORIA = "id_sub_categoria";
+	private static final String TAG_NOMBRE_CATEGORIA = "nombre_sub_categoria";
 	private static final String TAG_marca = "marca";
 	private static final String TAG_ID_MARCA = "id_marca";
 	private static final String TAG_NOMBRE_MARCA = "nombre_marca";
@@ -107,7 +107,6 @@ public class BusquedaCategoria extends ListActivity{
 		 txtbuscar = (EditText) findViewById(R.id.TextoBuscar);
          String buscar;
          buscar = txtbuscar.getText().toString();
-       System.out.println("aprete click en busqueda bategoria");
       // Nuevo Intent
  		Intent in = new Intent(getApplicationContext(),
  				BusquedaProducto.class);

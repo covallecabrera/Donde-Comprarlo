@@ -42,7 +42,7 @@ public class ListaProductos extends Activity{
 	private static final String TAG_ID = "id_productos";
 	private static final String TAG_NOMBRE = "nombre_producto";
 	private static final String TAG_PRECIO = "precio_producto";
-	private static final String TAG_IMAGEN = "imagen_producto1";
+	private static final String TAG_IMAGEN = "url_imagen";
 	private static final String TAG_BUSCAR = "buscar";
 	// productos JSONArray
 	JSONArray productosjson = null;

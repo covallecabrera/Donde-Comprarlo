@@ -1,20 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout 
-    android:orientation="vertical" 
-    android:layout_height="fill_parent" 
-    android:layout_width="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android">
-
-  	<LinearLayout
-  	    android:id="@+id/bot_half"
-  	    android:layout_width="fill_parent"
-  	    android:layout_height="fill_parent"
-  	    android:layout_weight="1"
-  	    android:orientation="horizontal" >
-
-   <fragment
-        android:id="@+id/map"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:name="com.google.android.gms.maps.SupportMapFragment"/>
-	</LinearLayout>
-</LinearLayout>
+<fragment xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/map"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    class="com.google.android.gms.maps.MapFragment" />

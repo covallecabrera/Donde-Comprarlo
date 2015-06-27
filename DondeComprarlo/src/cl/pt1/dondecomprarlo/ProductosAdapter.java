@@ -56,7 +56,7 @@ public class ProductosAdapter extends BaseAdapter {
 //		    precio.setText("Precio: "+productos.getPrecio());
 	    }else{
 		    nombre.setText("Modelo: "+productos.getNombre());
-		    precio.setText("Precio: $"+productos.getPrecio());
+//		    precio.setText("Precio: $"+productos.getPrecio());
 	    }
 	    
 	    TextView id = (TextView) vi.findViewById(R.id.id1);

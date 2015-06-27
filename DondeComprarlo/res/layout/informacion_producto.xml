@@ -52,8 +52,34 @@
                 android:onClick="cargarImagen3"
                 android:padding="10px"
                 android:scaleType="centerInside" />
-        </LinearLayout>
 
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:gravity="right|center_vertical"
+                android:onClick="cargarImagen4"
+                android:padding="10px"
+                android:scaleType="centerInside" />
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:gravity="right|center_vertical"
+                android:onClick="cargarImagen5"
+                android:padding="10px"
+                android:scaleType="centerInside" />
+
+            <ImageView
+                android:id="@+id/imageView7"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:gravity="right|center_vertical"
+                android:onClick="cargarImagen6"
+                android:padding="10px"
+                android:scaleType="centerInside" />
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
@@ -86,6 +112,7 @@
             android:id="@+id/precio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:text="TextView" />
     </LinearLayout>
 
@@ -109,6 +136,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView" />
+        
     </LinearLayout>
+
+    <ListView
+        android:id="@android:id/list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </ListView>
 
 </LinearLayout>

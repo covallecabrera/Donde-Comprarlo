@@ -49,7 +49,7 @@ public class ResultadosCriterio extends Activity {
 	private static final String TAG_ID = "id_productos";
 	private static final String TAG_NOMBRE = "nombre_producto";
 	private static final String TAG_PRECIO = "precio_producto";
-	private static final String TAG_IMAGEN = "imagen_producto1";
+	private static final String TAG_IMAGEN = "url_imagen";
 
 	// productos JSONArray
 	JSONArray productosjson = null;
@@ -69,6 +69,7 @@ public class ResultadosCriterio extends Activity {
 		nombre = i.getStringExtra(TAG_NOM_PRODUCTO);
 		precio = i.getStringExtra(TAG_PRE_PRODUCTO);
 		orden = i.getStringExtra(TAG_ORDEN_PRODUCTO);
+		System.out.println("AQUI DESPUES ESTA LA MARCA: "+marca);
 		if (precio.equals("")){
 			precio = "1000000";
 		}
