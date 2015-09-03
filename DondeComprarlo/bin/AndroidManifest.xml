@@ -83,7 +83,10 @@ Google Maps Android API v2, but are recommended.
             android:name=".MapaTienda"
             android:label="Tiendas" >
         </activity>
-
+        <activity
+            android:name=".RegistroUsuario"
+            android:label="Registro Usuario" >
+        </activity>
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyBUyqJdKEugcDNiAAdifXKLQ8Yl804LpGM" />
