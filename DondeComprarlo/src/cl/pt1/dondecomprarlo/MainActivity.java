@@ -31,10 +31,6 @@ public class MainActivity extends Activity {
 		 Intent i=new Intent(MainActivity.this, BusquedaCriterio.class);
 			startActivity(i);
 	 }
-	 public void MostrarMapa(View v){
-		 Intent i=new Intent(MainActivity.this, MapaTienda.class);
-			startActivity(i);
-	 }
 	 public void RegistrarUsuario(View v){
 		 Intent i=new Intent(MainActivity.this, RegistroUsuario.class);
 			startActivity(i);

@@ -2,7 +2,7 @@ package cl.pt1.dondecomprarlo;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import android.support.v4.app.DialogFragment;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
@@ -10,11 +10,19 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 
+
+
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -85,10 +93,29 @@ public class ResultadosCategoria extends Activity {
 						InformacionProductos.class);
 				// mandando an intent el TAG_BUSCAR, que el entra el id del producto al que se le hizo click.
 				in.putExtra(TAG_BUSCAR, product);
-
+				
 				// Se empieza la nueva actividad, esperando una respuesta de vuelta...
 				startActivityForResult(in, 100);
 
+//				FragmentManager fragmentManager = getSupportFragmentManager();
+//	            FragmentTransaction fragmentTransaction = fragmentManager
+//	                    .beginTransaction();
+//	            InformacionProductoFragment fragmentS1 = new InformacionProductoFragment();
+//	            fragmentTransaction.replace(R.id.pager, fragmentS1);
+//	            fragmentTransaction.commit();
+
+//				InformacionProductoFragment fragmentS1 = new InformacionProductoFragment();
+//				getFragmentManager().beginTransaction().replace(R.id.pager, fragmentS1).commit();
+
+//				Bundle bundle=new Bundle();
+//				bundle.putString(TAG_BUSCAR, product);
+//				  //set Fragmentclass Arguments
+//				InformacionProductoFragment fragobj=new InformacionProductoFragment();
+//				fragobj.setArguments(bundle);
+
+				
+				
+				
 			}
 		});
 

@@ -38,13 +38,13 @@ public class ImagenCompleta extends Activity{
 
 	}
 	public void VolverInformacion(View v){
-		// Starting new intent
-		System.out.println("Volver");
-		Intent in = new Intent(getApplicationContext(),
-				InformacionProductos.class);
-		// sending pid to next activity
-		in.putExtra(TAG_BUSCAR, id);
-		startActivityForResult(in, 100);
+//		// Starting new intent
+//		System.out.println("Volver");
+//		Intent in = new Intent(getApplicationContext(),
+//				InformacionProductos.class);
+//		// sending pid to next activity
+//		in.putExtra(TAG_BUSCAR, id);
+//		startActivityForResult(in, 100);
 		finish();
 	}
 	

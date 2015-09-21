@@ -10,6 +10,8 @@
         android:id="@+id/id1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:focusable="false" 
+        android:clickable="false"
         android:visibility="gone" />
 
     <!-- Name Label -->
@@ -28,6 +30,8 @@
             android:paddingLeft="6dip"
             android:paddingTop="6dip"
             android:textColor="#000000"
+                    android:focusable="false" 
+        android:clickable="false"
             android:textSize="17dip"
             android:textStyle="bold" />
 
@@ -38,6 +42,8 @@
             android:layout_weight="1"
             android:paddingLeft="6dip"
             android:paddingTop="6dip"
+                    android:focusable="false" 
+        android:clickable="false"
             android:textColor="#000000"
             android:textSize="17dip"
             android:textStyle="bold" />
@@ -49,6 +55,8 @@
             android:layout_weight="1"
             android:paddingLeft="6dip"
             android:paddingTop="6dip"
+                    android:focusable="false" 
+        android:clickable="false"
             android:textColor="#000000"
             android:textSize="17dip"
             android:textStyle="bold"
@@ -61,6 +69,8 @@
             android:layout_weight="1"
             android:paddingLeft="6dip"
             android:paddingTop="6dip"
+                    android:focusable="false" 
+        android:clickable="false"
             android:textColor="#000000"
             android:textSize="17dip"
             android:textStyle="bold"
@@ -74,6 +84,8 @@
             android:paddingLeft="6dip"
             android:paddingTop="6dip"
             android:textColor="#000000"
+                    android:focusable="false" 
+        android:clickable="false"
             android:textSize="17dip"
             android:textStyle="bold"
             android:visibility="gone" />
@@ -86,6 +98,8 @@
             android:paddingLeft="6dip"
             android:paddingTop="6dip"
             android:textColor="#000000"
+                    android:focusable="false" 
+        android:clickable="false"
             android:textSize="17dip"
             android:textStyle="bold"
             android:visibility="gone" />
